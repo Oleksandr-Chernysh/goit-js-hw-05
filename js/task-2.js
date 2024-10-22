@@ -1,48 +1,61 @@
 'use strict';
 
-const getTotalBalanceByGender = (users, gender) =>
-  users
-    .filter(gen => gen.gender === gender)
-    .reduce((total, balance) => total + balance.balance, 0);
+const getUsersWithFriend = (users, friendName) =>
+  users.filter(user => user.friends.includes(friendName));
 
-const clients = [
+const allUsers = [
   {
     name: 'Moore Hensley',
-    gender: 'male',
-    balance: 2811,
+    friends: ['Sharron Pace'],
   },
   {
     name: 'Sharlene Bush',
-    gender: 'female',
-    balance: 3821,
+    friends: ['Briana Decker', 'Sharron Pace'],
   },
   {
     name: 'Ross Vazquez',
-    gender: 'male',
-    balance: 3793,
+    friends: ['Marilyn Mcintosh', 'Padilla Garrison', 'Naomi Buckner'],
   },
   {
     name: 'Elma Head',
-    gender: 'female',
-    balance: 2278,
+    friends: ['Goldie Gentry', 'Aisha Tran'],
   },
   {
     name: 'Carey Barr',
-    gender: 'male',
-    balance: 3951,
+    friends: ['Jordan Sampson', 'Eddie Strong'],
   },
   {
     name: 'Blackburn Dotson',
-    gender: 'male',
-    balance: 1498,
+    friends: ['Jacklyn Lucas', 'Linda Chapman'],
   },
   {
     name: 'Sheree Anthony',
-    gender: 'female',
-    balance: 2764,
+    friends: ['Goldie Gentry', 'Briana Decker'],
   },
 ];
 
-console.log(getTotalBalanceByGender(clients, 'male')); // 12053
+console.log(getUsersWithFriend(allUsers, 'Briana Decker'));
+// [
+//   {
+//     name: "Sharlene Bush",
+//     friends: ["Briana Decker", "Sharron Pace"]
+//   },
+//   {
+//     name: "Sheree Anthony",
+//     friends: ["Goldie Gentry", "Briana Decker"]
+//   }
+// ]
 
-console.log(getTotalBalanceByGender(clients, 'female')); // 8863
+console.log(getUsersWithFriend(allUsers, 'Goldie Gentry'));
+// [
+//   {
+//     name: "Elma Head",
+//     friends: ["Goldie Gentry", "Aisha Tran"]
+//   },
+//   {
+//     name: "Sheree Anthony",
+//     friends: ["Goldie Gentry", "Briana Decker"]
+//   }
+// ]
+
+console.log(getUsersWithFriend(allUsers, 'Adrian Cross')); // []
