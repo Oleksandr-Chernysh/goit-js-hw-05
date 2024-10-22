@@ -1,17 +1,48 @@
-"use strict"
+'use strict';
 
-function formatMessage(message, maxLength){
-    if(message.length <= maxLength){
-        return message;
-    }
-    else{
-        return message.slice(0, maxLength) + "...";
-    }
-}
+const getTotalBalanceByGender = (users, gender) =>
+  users
+    .filter(gen => gen.gender === gender)
+    .reduce((total, balance) => total + balance.balance, 0);
 
-console.log(formatMessage("Curabitur ligula sapien", 16)); // "Curabitur ligula..."
-console.log(formatMessage("Curabitur ligula sapien", 23)); // "Curabitur ligula sapien"
-console.log(formatMessage("Vestibulum facilisis purus nec", 20)); // "Vestibulum facilisis..."
-console.log(formatMessage("Vestibulum facilisis purus nec", 30)); // "Vestibulum facilisis purus nec"
-console.log(formatMessage("Nunc sed turpis a felis in nunc fringilla", 15)); // "Nunc sed turpis..."
-console.log(formatMessage("Nunc sed turpis a felis in nunc fringilla", 41)); // "Nunc sed turpis a felis in nunc fringilla"
+const clients = [
+  {
+    name: 'Moore Hensley',
+    gender: 'male',
+    balance: 2811,
+  },
+  {
+    name: 'Sharlene Bush',
+    gender: 'female',
+    balance: 3821,
+  },
+  {
+    name: 'Ross Vazquez',
+    gender: 'male',
+    balance: 3793,
+  },
+  {
+    name: 'Elma Head',
+    gender: 'female',
+    balance: 2278,
+  },
+  {
+    name: 'Carey Barr',
+    gender: 'male',
+    balance: 3951,
+  },
+  {
+    name: 'Blackburn Dotson',
+    gender: 'male',
+    balance: 1498,
+  },
+  {
+    name: 'Sheree Anthony',
+    gender: 'female',
+    balance: 2764,
+  },
+];
+
+console.log(getTotalBalanceByGender(clients, 'male')); // 12053
+
+console.log(getTotalBalanceByGender(clients, 'female')); // 8863
